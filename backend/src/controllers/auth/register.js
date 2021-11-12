@@ -1,6 +1,6 @@
 import Boom from 'boom'
-import UserService from '../../services/user-service.js'
-import UserSchema from './validations.js'
+import UserService from '../../services/user-service'
+import UserSchema from './validations'
 
 const register = async (req, res, next) => {
   const { error } = UserSchema.validate(req.body)

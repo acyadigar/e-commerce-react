@@ -1,4 +1,4 @@
-import ProductModel from '../models/product.js'
+import ProductModel from '../models/product'
 
 class ProductService {
   model = ProductModel

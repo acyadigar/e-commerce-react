@@ -1,5 +1,5 @@
 import Boom from 'boom'
-import ProductService from "../../services/product-service.js"
+import ProductService from "../../services/product-service"
 
 const deleteProduct = async (req, res, next) => {
   const productId = req.params.id

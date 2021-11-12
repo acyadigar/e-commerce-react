@@ -1,10 +1,10 @@
 import 'dotenv/config';
-import './mongo-connection.js'
+import './mongo-connection'
 import express from 'express';
 import Boom from 'boom';
 import cors from 'cors';
 
-import routes from './routes/index.js'
+import routes from './routes'
 
 const app = express();
 

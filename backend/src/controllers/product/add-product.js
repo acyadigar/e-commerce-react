@@ -1,6 +1,6 @@
 import Boom from 'boom'
-import ProductService from "../../services/product-service.js"
-import ProductSchema from './validations.js'
+import ProductService from "../../services/product-service"
+import ProductSchema from './validations'
 
 const addProduct = async (req, res, next) => {
   if (!req.payload.role === 'user') {
