@@ -5,15 +5,12 @@ import UserModel from "../models/user";
 class UserService {
   model = UserModel
 
-  deleteKeys(data) {
-    const user = data.toObject()
-    delete user.__v
-    delete user.password
-    return user
-  }
-
   findUser(email) {
     return this.model.findOne({email: email})
+  }
+
+  findAll() {
+    return this.model.find()
   }
 
   async register(userData) {

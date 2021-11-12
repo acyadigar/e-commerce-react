@@ -12,7 +12,6 @@ const login = async (req, res, next) => {
   const isValidPassword = await UserService.comparePassword(req.body.password, user.password)
   if(!isValidPassword) return next(Boom.unauthorized('Username or password is incorrect!'))
 
-  user = UserService.deleteKeys(user)
   const token = await UserService.signToken(user)
   
   user = {...user, token}

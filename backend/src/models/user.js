@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		toJSON: false,
+		select: false
 	},
 	role: {
 		type: String,
