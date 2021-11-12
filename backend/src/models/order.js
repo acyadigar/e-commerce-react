@@ -1,19 +1,20 @@
 import mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
-
-const orderSchema = new Schema({
+const orderSchema = new mongoose.Schema({
   user: {
-    type: Schema.Types.ObjectId,
-    ref: 'user',
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'User',
+    autopopulate: {
+      maxDepth: 1
+    }
   },
-  adress: {
+  address: {
     type: String,
     required: true,
   },
   items: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: 'Product',
       autopopulate: {
         maxDepth: 1
@@ -23,11 +24,11 @@ const orderSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-  },
+  }
 });
 
 orderSchema.plugin(require('mongoose-autopopulate'))
 
-const Order = mongoose.model('order', orderSchema);
+const OrderModel = mongoose.model('Order', orderSchema);
 
-export default Order;
+export default OrderModel;
