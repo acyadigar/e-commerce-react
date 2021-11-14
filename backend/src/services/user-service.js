@@ -1,42 +1,41 @@
-import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 import UserModel from "../models/user";
 
 class UserService {
-  model = UserModel
+  model = UserModel;
 
   findUser(email) {
-    return this.model.findOne({email: email})
+    return this.model.findOne({ email: email });
   }
 
   findAll() {
-    return this.model.find()
+    return this.model.find();
   }
 
   async register(userData) {
-    const user = await this.model.create(userData)
-    return this.deleteKeys(user)
+    return await this.model.create(userData);
   }
-  
+
   async comparePassword(inputPassword, userPassword) {
-    return await bcrypt.compare(inputPassword, userPassword)
+    return await bcrypt.compare(inputPassword, userPassword);
   }
 
   signToken(user) {
     return new Promise((res, rej) => {
       const options = {
-        expiresIn: '7d'
-      }
+        expiresIn: "7d",
+      };
       const payload = {
-        ...user
-      }
+        ...user,
+      };
 
       jwt.sign(payload, process.env.SECRET_KEY_JWT, options, (err, token) => {
-        if(err) return rej(err)
-        res(token)
-      })
-    })
+        if (err) return rej(err);
+        res(token);
+      });
+    });
   }
 }
 
-export default new UserService()
+export default new UserService();
