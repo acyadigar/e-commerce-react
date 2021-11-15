@@ -1,0 +1,11 @@
+*::selection {
+  background-color: #459473;
+  color: white;
+}
+.router-link {
+  color: inherit;
+  text-decoration: none;
+}
+.router-link:hover {
+  color: inherit;
+}
