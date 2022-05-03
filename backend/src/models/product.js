@@ -4,15 +4,20 @@ const productSchema = new mongoose.Schema({
 	images: {
     type: [String]
   },
-  title: {
+  name: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   description: {
     type: String,
-    required: true
+    required: false
   },
   price: {
+    type: Number,
+    required: true
+  },
+  description: {
     type: String,
     required: true
   },
