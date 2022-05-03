@@ -14,7 +14,7 @@ class UserService {
   }
 
   async register(userData) {
-    return await this.model.create(userData);
+    return this.model.create(userData);
   }
 
   async comparePassword(inputPassword, userPassword) {
@@ -26,6 +26,8 @@ class UserService {
       const options = {
         expiresIn: "7d",
       };
+      
+      [user.password, user.__v] = []
       const payload = {
         ...user,
       };
