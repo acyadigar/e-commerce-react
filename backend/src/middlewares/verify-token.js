@@ -2,7 +2,7 @@ import Boom from 'boom'
 import jwt from 'jsonwebtoken'
 
 const verifyToken = async (req, res, next) => {
-  const authorizationToken = req.headers["authorization"]
+  const authorizationToken = req.headers["authorization"].split(' ')[1]
 	if (!authorizationToken) return next(Boom.unauthorized())
 
   jwt.verify(authorizationToken, process.env.SECRET_KEY_JWT, (err, payload) => {
