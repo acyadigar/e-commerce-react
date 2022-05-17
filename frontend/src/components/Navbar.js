@@ -1,44 +1,57 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { PersonCircle } from "react-bootstrap-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../store/authSlice";
+import { 
+  HouseFill,
+  Cart4,
+  PeopleFill,
+  FileText,
+  BoxArrowInRight,
+  BoxArrowLeft,
+  PersonPlusFill,
+  Basket,
+  Gear
+} from "react-bootstrap-icons";
+import './styles/Navbar.css'
 
 export default function NavigationBar() {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch()
+  const isAdmin = user && user.role !== 'admin'
+
+  const _logout = () => {
+    dispatch(logout())
+  }
+
   return (
-    <>
-      <Navbar bg="dark" variant="dark" expand="md" sticky="top">
-        <Container>
-          <Navbar.Brand>React-Bootstrap</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto">
-              <Nav.Link>
-                <Link to="/" className="router-link">
-                  Anasayfa
-                </Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/products" className="router-link">
-                  Ürünler
-                </Link>
-              </Nav.Link>
-            </Nav>
-            <Nav>
-              <Nav.Link>
-                <Link to="/sign-in" className="router-link">
-                  Giriş Yap
-                  <PersonCircle className="mb-1 mx-2" />
-                </Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/sign-up" className="router-link">
-                  Kayıt Ol
-                  <PersonCircle className="mb-1 mx-2" />
-                </Link>
-              </Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
+    <div id="menu">
+      <ul className="links">
+        <h1>Sidebar Menu</h1>
+        <hr />
+        <ul className="public-links">
+          <Link to="/"><li><HouseFill /> Anasayfa</li></Link>
+          <Link to="products"><li><Cart4 /> Ürünler</li></Link>
+        </ul>
+      </ul>
+
+      { isAdmin && <ul className="admin-links">
+        <Link to="users"><li><PeopleFill /> Kullanıcılar</li></Link>
+        <Link to="products/add"><li><FileText /> Ürün Takibi</li></Link>
+        <Link to="settings"><li><Gear /> Ayarlar (Admin)</li></Link>
+      </ul> }
+
+      <ul className="auth-handlers links">
+        { user ? 
+          <div className="auth-links">
+            <Link to="my-basket"><li><Basket /> Sepetim</li></Link>
+            <li onClick={_logout}><BoxArrowLeft /> Çıkış</li>
+          </div>
+          :
+          <div className="auth-links">
+            <Link to="sign-in"><li><BoxArrowInRight /> Giriş Yap</li></Link>
+            <Link to="sign-up"><li><PersonPlusFill /> Kayıt Ol</li></Link>
+          </div> }
+      </ul>
+    </div>
   );
 }

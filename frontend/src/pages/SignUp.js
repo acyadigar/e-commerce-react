@@ -3,10 +3,12 @@ import { register } from "../store/authSlice";
 import { Container, Form, Button, FloatingLabel } from "react-bootstrap";
 import { useFormik } from "formik";
 import validationSchema from "./validations/sign-up";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const auth = useSelector((state) => state.auth.user);
-  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth.user)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
@@ -16,14 +18,12 @@ export default function SignUp() {
     },
     validationSchema,
     onSubmit: async (values, bag) => {
-      try {
-        if (values.password !== values.passwordConfirm) return;
-        delete values.passwordConfirm;
-        dispatch(register(values));
-      } catch (e) {
-        bag.setErrors({ general: e.response.data.message });
-      }
-    },
+      if (values.password !== values.passwordConfirm) return;
+      delete values.passwordConfirm;
+      const { meta } = await dispatch(register(values))
+      if (meta.requestStatus === 'fulfilled') return navigate('/')
+      bag.setErrors({ general: meta });
+    }
   });
 
   return (

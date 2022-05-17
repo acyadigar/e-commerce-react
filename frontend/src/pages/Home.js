@@ -1,5 +1,9 @@
-import React from "react";
+import '../App.css'
 
 export default function Home() {
-  return <div>This is home!</div>;
+  return ( 
+    <>
+      <h1>This is home!</h1>
+    </>
+  )
 }

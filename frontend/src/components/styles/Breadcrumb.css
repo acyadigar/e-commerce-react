@@ -1,0 +1,29 @@
+#breadcrumb {
+  background: #efefef;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  box-shadow: 0 0 3px 1px #b9b9b9;
+  margin-bottom: 1rem;
+}
+
+#breadcrumb ul {
+  color: gray;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+
+#breadcrumb a {
+  color: #618bff;
+  text-decoration: underline;
+}
+
+#breadcrumb li:not(:first-child) {
+  margin-left: .5rem;
+}
+
+#breadcrumb a:hover {
+  color: #124ae4;
+}

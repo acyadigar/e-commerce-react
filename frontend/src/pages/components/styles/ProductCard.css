@@ -1,0 +1,12 @@
+.product-card {
+  display: flex;
+  border-radius: .25rem;
+  border: 1px solid gray;
+}
+
+.product-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

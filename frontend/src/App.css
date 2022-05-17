@@ -1,11 +1,10 @@
-*::selection {
-  background-color: #459473;
-  color: white;
+.app {
+  display: flex;
 }
-.router-link {
-  color: inherit;
-  text-decoration: none;
-}
-.router-link:hover {
-  color: inherit;
+
+#main {
+  flex: 4;
+  overflow-y: auto;
+  max-height: 100vh;
+  padding: 1rem;
 }
