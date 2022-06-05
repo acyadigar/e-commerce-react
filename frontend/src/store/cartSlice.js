@@ -20,15 +20,6 @@ export const cartSlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchMe.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token
-      localStorage.setItem('token', action.payload.token)
-      state.loading = false
-    },
-    [fetchMe.pending]: (state) => {
-      state.loading = true
-    }
   },
 });
 
