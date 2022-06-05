@@ -10,7 +10,6 @@ export default function ProductCard({ product }) {
   const dispatch = useDispatch()
 
   const isAlreadyAdded = useMemo(() => {
-    console.log('...');
     return cart.find(item => item._id === product._id) ? true : false
   }, [cart, product._id])
   
