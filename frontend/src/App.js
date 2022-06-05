@@ -9,6 +9,7 @@ import ProtectedRoute from "./middlewares/ProtectedRoutes";
 import NotAllowed from "./pages/NotAllowed";
 import Settings from "./pages/Settings";
 import Users from "./pages/Users";
+import MyBasket from "./pages/MyBasket"
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchMe } from "./store/authSlice";
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="sign-up" element={<SignUp />} />
           <Route element={<ProtectedRoute />}>
             <Route path="products" element={<Products />} />
+            <Route path="my-basket" element={<MyBasket />} />
           </Route>
           <Route element={<ProtectedRoute admin={true} />}>
             <Route path="products/add" element={<CreateProduct />} />
